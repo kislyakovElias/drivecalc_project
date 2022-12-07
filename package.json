@@ -1,0 +1,22 @@
+{
+  "name": "drivecalc_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "(cd client && npm install); (cd server && npm install)",
+    "client": "npm start --prefix ./client",
+    "server": "nodemon ./server/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [],
+  "author": "Ilya",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.5.0",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "@react-google-maps/api": "^2.17.0"
+  }
+}

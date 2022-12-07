@@ -1,0 +1,9 @@
+.App{
+    padding: 0 1rem;
+    &__listItem{
+
+        text-decoration: none;
+        list-style-type: none;
+        margin-bottom: 1rem;
+    }
+}
