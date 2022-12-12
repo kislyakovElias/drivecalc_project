@@ -6,16 +6,17 @@ import React, {
   forwardRef,
 } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import SignIn from "../components/signIn/SignIn"
 
-
-
-const HomePage =  ((props, _ref) => {
-
+const HomePage = (props, _ref) => {
   return (
     <>
-     <div>Homepage</div>
+      <SignIn/>
+      <div>Homepage</div>
+      <div>Login here</div>
+      <br />
     </>
   );
-});
+};
 
 export default HomePage;
