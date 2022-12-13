@@ -1,7 +1,10 @@
+@use "../../main.scss";
+
+
 .carCard{
     border: solid 1px lightgray;
     border-radius: 5px;
-    width: 45rem;
+    width: 15rem;
     padding: 0 2rem;
     &__label{
         font-size: 1.1rem;
@@ -10,4 +13,10 @@
         font-size: 1.1rem;
         font-weight: 700;
     }
+}
+
+@include main.bp_medium {
+.carCard{
+    width: 45rem;
+}
 }

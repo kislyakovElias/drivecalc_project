@@ -1,0 +1,21 @@
+@use "../../main.scss";
+
+.carCard {
+  border: solid 1px lightgray;
+  border-radius: 5px;
+  width: 13.5rem;
+  padding: 0 2rem;
+  &__label {
+    font-size: 1.1rem;
+  }
+  &__carname {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+}
+
+@include main.bp_medium {
+  .carCard {
+    width: 45rem;
+  }
+}

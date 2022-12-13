@@ -9,12 +9,12 @@ import SelectModel from "../selectModel/SelectModel";
 import React from "react";
 const BACK_END = process.env.REACT_APP_BACKEND_URL;
 
-function CarChoice() {
+function CarChoice(props) {
     const [dataset, setDataset] = useState([]);
     const [selectedYear, setSelectedYear] = useState('');
     const [selectedMake, setSelectedMake] = useState('');
     const [selectedModel, setSelectedModel] = useState('');
-    const [selectedCar, setSelectedCar] = useState({})
+    // const [selectedCar, setSelectedCar] = useState({})
 
     useEffect(() => {
       const fetchStudents = async () => {
@@ -25,7 +25,7 @@ function CarChoice() {
       fetchStudents();
     }, []);
     console.log(selectedYear);
-    console.log(selectedCar);
+    // console.log(selectedCar);
 
   return (
     <div className="App">
@@ -66,7 +66,7 @@ function CarChoice() {
                 city_co2_rounded={el.city_co2_rounded}
                 hwy_co2_rounded={el.hwy_co2_rounded}
                 oil_type={el.oil_type}
-                setSelectedCar={setSelectedCar}
+                setSelectedCar={props.setCarChoice}
               />
             }
           </li>
