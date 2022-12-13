@@ -23,8 +23,8 @@ import mapStyles from "./mapStyles";
 
 const libraries = ["places"];
 const mapContainerStyle = {
-  height: "50vh",
-  width: "50vw",
+  height: "75vh",
+  width: "100vw",
 };
 const options = {
   styles: mapStyles,
@@ -104,7 +104,12 @@ export default function Mapp() {
       </h1>
 
       <Locate panTo={panTo} />
-      <Search setMarkers={setMarkers} from={from} setFrom={setFrom} panTo={panTo} />
+      <Search
+        setMarkers={setMarkers}
+        from={from}
+        setFrom={setFrom}
+        panTo={panTo}
+      />
       <To setTo={setTo} />
 
       <GoogleMap
@@ -207,13 +212,13 @@ function Search({ setMarkers, from, setFrom, panTo }) {
       const { lat, lng } = await getLatLng(results[0]);
       setFrom({ lat, lng });
       setMarkers((current) => [
-            ...current,
-            {
-              lat: lat,
-              lng: lat,
-              time: new Date(),
-            },
-          ]);
+        ...current,
+        {
+          lat: lat,
+          lng: lat,
+          time: new Date(),
+        },
+      ]);
       panTo({ lat, lng });
     } catch (error) {
       console.log("😱 Error: ", error);

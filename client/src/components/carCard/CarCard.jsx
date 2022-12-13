@@ -7,17 +7,33 @@ const BACK_END = process.env.REACT_APP_BACKEND_URL;
 
 function CarCard(props) {
 
+  let carSelect =(e) => {
+    let obj = {
+      year: props?.model_year,
+      make: props?.mfr_name,
+      model: props?.Carline,
+      mpg: Math.floor(+props.city_mpg + +props.hwy_mpg) / 2,
+      litre_100km: +(
+        235.214583 /
+        (Math.floor(+props.city_mpg + +props.hwy_mpg) / 2)
+      ).toFixed(1),
+    };
+    props.setSelectedCar(obj)
+    
+  }
+
   return (
     <div className="carCard">
       {/* <h4 className="carCard__header">Your Car:</h4> */}
       <p className="carCard__label">Car: <span className="carCard__carname">{props?.mfr_name} {props?.Carline}</span></p>
       <p className="carCard__label">Year: {props?.model_year}</p>
-      <p className="carCard__label">Car type: {props?.car_desc}</p>
+      <p className="carCard__label">Car type: {props?.car_desc? props.car_desc:'n/a'}</p>
       <p className="carCard__label">Fuel consumption: {Math.floor(+props.city_mpg + +props.hwy_mpg) / 2} miles per gallon.</p>
-      <p className="carCard__label">Fuel consumption per 100km: {100*3.785411784/1.609344*(Math.floor(+props.city_mpg + +props.hwy_mpg) / 2)}</p>
+      <p className="carCard__label">Fuel consumption per 100km: {(235.214583/(Math.floor(+props.city_mpg + +props.hwy_mpg) / 2)).toFixed(1)} litre per 100 km</p>
       <p className="carCard__label">CO2 emission benchmark: {Math.floor(+props.city_co2_rounded + +props.hwy_co2_rounded) / 2}</p>
       <p className="carCard__label">Oil type : {props.oil_type}</p>
       <br />
+      <button onClick={carSelect}>Select</button>
       {/* Drive Desc -> car_desc */}
       {/* EPA FE Label Dataset ID changed to car_id */}
       {/* {dataset.map((el, index) => (
