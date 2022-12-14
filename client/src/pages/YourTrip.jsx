@@ -7,6 +7,7 @@ const YourTrip = (props, _ref) => {
       <div>Trip page</div>
       <div>Map</div>
       <Mapp />
+      {/* https://developers.google.com/maps/documentation/places/web-service/details */}
     </>
   );
 };

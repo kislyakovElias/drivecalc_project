@@ -1,39 +1,26 @@
-import "./CarCard.scss";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import "./TripDetails.scss";
 
-import React from "react";
-const BACK_END = process.env.REACT_APP_BACKEND_URL;
 
-function CarCard(props) {
+function TripDetails(props) {
+
+  let litresNeeded = (props.distance / 100) * props.carChoice.litre_100km;
 
   return (
-    <div className="carCard">
-      <p>TRIP DETAILS</p>
+    <div className="details">
+      <h4>Details</h4>
       <div>
-        <div>You start at</div>
-        <div>Home</div>
+        Your car is: {props.carChoice.make} {props.carChoice.model}
+        {props.carChoice.year}
       </div>
       <div>
-        <div>Your destination is</div>
-        <div>Work</div>
+        Fuel efiiciency is: {props.carChoice.mpg} Miles per galon, or{" "}
+        {props.carChoice.litre_100km} l/100km.
       </div>
-      <div>
-        <div>Distance</div>
-        <div>100km</div>
-      </div>
+      <div>Your trip distance is: {props.distance}</div>
+      <div>You will need: <h5>{litresNeeded}</h5> litres for your trip.</div>
       
-      {/* <h4 className="carCard__header">Your Car:</h4> */}
-      <p className="carCard__label">Car: <span className="carCard__carname">{props?.mfr_name} {props?.Carline}</span></p>
-      <p className="carCard__label">Year: {props?.model_year}</p>
-      <p className="carCard__label">Car type: {props?.car_desc}</p>
-      <p className="carCard__label">Fuel consumption: {Math.floor(+props.city_mpg + +props.hwy_mpg) / 2} miles per gallon.</p>
-      <p className="carCard__label">Fuel consumption per 100km: {100*3.785411784/1.609344*(Math.floor(+props.city_mpg + +props.hwy_mpg) / 2)}</p>
-      <p className="carCard__label">CO2 emission benchmark: {Math.floor(+props.city_co2_rounded + +props.hwy_co2_rounded) / 2}</p>
-      <p className="carCard__label">Oil type : {props.oil_type}</p>
-      <br />
     </div>
   );
 }
 
-export default CarCard;
+export default TripDetails;
