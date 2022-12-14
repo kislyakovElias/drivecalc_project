@@ -24,7 +24,7 @@ import mapStyles from "./mapStyles";
 const libraries = ["places"];
 const mapContainerStyle = {
   height: "75vh",
-  width: "100vw",
+  width: "90vw",
 };
 const options = {
   styles: mapStyles,
@@ -98,9 +98,9 @@ export default function Mapp() {
     <div>
       <h1>
         Your route{" "}
-        <span role="img" aria-label="tent">
+        {/* <span role="img" aria-label="tent">
           ⛺️
-        </span>
+        </span> */}
       </h1>
 
       <Locate panTo={panTo} />

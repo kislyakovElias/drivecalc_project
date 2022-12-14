@@ -28,7 +28,7 @@ function CarChoice(props) {
     // console.log(selectedCar);
 
   return (
-    <div className="App">
+    <div className="carChoice">
       <h3>Find your car below:</h3>
       <div>
         <SelectYear setSelectedYear={setSelectedYear} />
@@ -58,14 +58,14 @@ function CarChoice(props) {
             {/* MPG_calculated: {el.mpg_calculated} <br /> */}
             {
               <CarCard
+                model_year={el.model_year}
                 mfr_name={el.mfr_name}
                 carline={el.carline}
-                model_year={el.model_year}
-                car_desc={el.car_desc}
-                city_mpg={el.city_mpg}
-                hwy_mpg={el.hwy_mpg}
-                city_co2_rounded={el.city_co2_rounded}
-                hwy_co2_rounded={el.hwy_co2_rounded}
+                class={el.class}
+                car_type={el.car_type}
+                mpg_combined_nominal={el.mpg_combined_nominal}
+                mpg_combined={el.mpg_combined}
+                co2_rounded={el.co2_rounded}
                 oil_type={el.oil_type}
                 setSelectedCar={props.setCarChoice}
                 setCurrent={props.setCurrent}

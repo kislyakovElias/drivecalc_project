@@ -20,6 +20,8 @@ function Distance(props) {
       props.setDistance(val)
      }
 
+     //Do something that hide all the unnecessary stuff
+
     console.log(val, 'submitted');
   };
 

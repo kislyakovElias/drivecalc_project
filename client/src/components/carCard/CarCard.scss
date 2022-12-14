@@ -4,10 +4,11 @@
 .carCard{
     border: solid 1px lightgray;
     border-radius: 5px;
-    width: 15rem;
-    padding: 0 2rem;
+    width: 100%;
+    padding: 0.5rem 1rem;
     &__label{
         font-size: 1.1rem;
+        margin: 0.5rem 0;
     }
     &__carname{
         font-size: 1.1rem;
@@ -17,6 +18,6 @@
 
 @include main.bp_medium {
 .carCard{
-    width: 45rem;
+    // width: 45rem;
 }
 }

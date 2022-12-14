@@ -4,6 +4,8 @@ import React, {
   useState,
 
 } from "react";
+
+import {Button} from "antd";
 import { Routes, Route, useLocation } from "react-router-dom";
 import SignIn from "../components/signIn/SignIn"
 import CarChoice from "../components/carChoice/CarChoice";
@@ -11,11 +13,13 @@ import CarChoiceDetails from "../components/carChoiceDetails/CarChoiceDetails";
 import { Steps } from "antd";
 import Distance from "../components/distance/Distance";
 import TripDetails from "../components/tripDetails/TripDetails";
+import TripSteps from "../components/tripSteps/TripSteps";
 
 
 const HomePage = (props, _ref) => {
   const [name, setName] = useState("");
   const [isSigned, setIsSigned] = useState(false);
+  const [start, setStart] = useState(false);
   const [carChoice, setCarChoice] = useState();
   const [distance, setDistance] = useState();
   const [current, setCurrent] = useState(0);
@@ -26,9 +30,13 @@ const HomePage = (props, _ref) => {
 console.log(distance);
   },[distance])
 
+    const toStart = (e) => {
+      setStart(!start);
+    };
+
   return (
     <>
-      <section className="home">
+      {/* <section className="home">
         <div className="home__steps">
           <Steps
             progressDot
@@ -58,9 +66,6 @@ console.log(distance);
               setCurrent={setCurrent}
             />
           )}
-          {/* {!isSigned && (
-            <p>1) Sign in conditioning and display the page if name = true</p>
-          )} */}
           {isSigned && !carChoice && (
             <div>
               <div> Hi, {name}!</div>
@@ -93,22 +98,26 @@ console.log(distance);
               And add the trip <Distance setDistance={setDistance} /> or provide
               poins A and B
             </div>
-          )}
-          {isSigned && carChoice && distance && (
-            <div>
-              Your trip details:
-              <TripDetails distance={distance} carChoice={carChoice} />
-            </div>
-          )}
-          <br />
-          <div>
-            after calc options and map display - show Add checklist button
-          </div>
-          <div>checkilst todo to display at tripInfo page</div>
-          <div> Give a name to your trip, and save info to json file.</div>
-          check gas price?
+          )}*/}
+      {isSigned && carChoice && distance && (
+        <div>
+          Your trip details:
+          <TripDetails distance={distance} carChoice={carChoice} />
         </div>
-      </section>
+      )}
+      { start && <TripSteps setIsSigned={setIsSigned} />}
+      {!start && <div>
+        <br />
+        <div>
+          <div>T o star click start and do whaeva u want</div>
+          <br />
+          after calc options and map display - show Add checklist button
+        </div> <Button onClick={toStart} >Start</Button>
+        <div>checkilst todo to display at tripInfo page</div>
+        <div> Give a name to your trip, and save info to json file.</div>
+        check gas price?
+      </div>}
+      
     </>
   );
 };

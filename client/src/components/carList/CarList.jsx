@@ -68,10 +68,8 @@ function CarList() {
                 oil_type={el.oil_type}
                 setSelectedCar={setSelectedCar}
 
-                city_mpg={el.city_mpg}
-                hwy_mpg={el.hwy_mpg}
-                city_co2_rounded={el.city_co2_rounded}
-                hwy_co2_rounded={el.hwy_co2_rounded}
+                engine_volume={el.engine_volume}
+                num_cylinders={el.num_cylinders}
               />
             }
           </li>

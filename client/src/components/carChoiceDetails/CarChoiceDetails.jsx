@@ -10,13 +10,11 @@ function CarChoiceDetails(props) {
     let obj = {
       year: props?.model_year,
       make: props?.mfr_name,
-      model: props?.Carline,
-      mpg: Math.floor(+props.city_mpg + +props.hwy_mpg) / 2,
-      litre_100km: +(
-        235.214583 /
-        (Math.floor(+props.city_mpg + +props.hwy_mpg) / 2)
-      ).toFixed(1),
+      model: props?.carline,
+      mpg: (+props.mpg_combined).toFixed(1),
+      co2: props.co2_rounded ? props.co2_rounded : "",
     };
+    props.setCurrent(2);
     props.setSelectedCar(obj);
   };
 
@@ -26,21 +24,16 @@ function CarChoiceDetails(props) {
       <p className="carCard__label">
         Car:{" "}
         <span className="carCard__carname">
-          {props?.make} {props?.model}
+          {props?.year} {props?.make} {props?.model}
         </span>
       </p>
-      <p className="carCard__label">Year: {props?.year}</p>
-      
       <p className="carCard__label">
-        Fuel consumption: {props.mpg}
-        miles per gallon.
+        Average mpg: {(+props.mpg).toFixed(1)} miles per gallon.
       </p>
       <p className="carCard__label">
-        Fuel consumption per 100km:{" "}
-       {props.litre_100km}
-        litre per 100 km
+        Fuel consumption:{" "}
+        {(235.214583 / props.mpg).toFixed(1)} litre per 100 km
       </p>
-      
     </div>
   );
 }
