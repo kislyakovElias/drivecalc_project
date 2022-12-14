@@ -6,14 +6,20 @@ import { Checkbox, Input, Button } from "antd";
 
 function Distance(props) {
   const [val, setVal] = useState();
+   const [checked, setChecked] = useState(false);
+   
   
-  const handleChange = (value) => {
-    setVal(value);
-    console.log(value,"d");
+  const double = (e) => {
+    setChecked(e.target.checked);
   };
   
   const onSubmit = () => {
-    props.setDistance(val)
+    if(checked){
+      props.setDistance(val*2)
+    }else {
+      props.setDistance(val)
+     }
+
     console.log(val, 'submitted');
   };
 
@@ -21,9 +27,16 @@ function Distance(props) {
     <>
       <section>
         <label htmlFor="distance"></label>
-        <Input placeholder="input distance in kilometers" onChange={(e)=>setVal(e.target.value)} name="distance" type="text" />
-        <Button onClick={onSubmit}> Check the distance</Button>
-        <Checkbox >roundtrip?</Checkbox>
+        <Input
+          placeholder="input distance in kilometers"
+          onChange={(e) => setVal(e.target.value)}
+          name="distance"
+          type="text"
+        />
+        <Button onClick={onSubmit}> Add distance</Button>
+        <Checkbox checked={checked} onChange={double}>
+          roundtrip?
+        </Checkbox>
       </section>
     </>
   );

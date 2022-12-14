@@ -2,8 +2,7 @@ import axios from "axios";
 import React, {
   useEffect,
   useState,
-  useImperativeHandle,
-  forwardRef,
+
 } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import SignIn from "../components/signIn/SignIn"
@@ -11,16 +10,21 @@ import CarChoice from "../components/carChoice/CarChoice";
 import CarChoiceDetails from "../components/carChoiceDetails/CarChoiceDetails";
 import { Steps } from "antd";
 import Distance from "../components/distance/Distance";
+import TripDetails from "../components/tripDetails/TripDetails";
 
-const description = "setting up.";
 
 const HomePage = (props, _ref) => {
   const [name, setName] = useState("");
   const [isSigned, setIsSigned] = useState(false);
   const [carChoice, setCarChoice] = useState();
   const [distance, setDistance] = useState();
+  const [current, setCurrent] = useState(0);
 
   console.log(carChoice);
+
+  useEffect(()=>{
+console.log(distance);
+  },[distance])
 
   return (
     <>
@@ -28,18 +32,18 @@ const HomePage = (props, _ref) => {
         <div className="home__steps">
           <Steps
             progressDot
-            current={1}
+            current={current}
             items={[
               {
-                title: "Finished",
-                description: "This is a description.",
+                title: "Name",
+                description: "Provide your name.",
               },
               {
-                title: "In Progress",
-                description: "This is a description.",
+                title: "Car",
+                description: "Choose your car.",
               },
               {
-                title: "Waiting",
+                title: "Destination",
                 description: "This is a description.",
               },
             ]}
@@ -47,11 +51,16 @@ const HomePage = (props, _ref) => {
         </div>
         <div className="home_right">
           {!isSigned && (
-            <SignIn name={name} setName={setName} setIsSigned={setIsSigned} />
+            <SignIn
+              name={name}
+              setName={setName}
+              setIsSigned={setIsSigned}
+              setCurrent={setCurrent}
+            />
           )}
-          {!isSigned && (
+          {/* {!isSigned && (
             <p>1) Sign in conditioning and display the page if name = true</p>
-          )}
+          )} */}
           {isSigned && !carChoice && (
             <div>
               <div> Hi, {name}!</div>
@@ -59,7 +68,11 @@ const HomePage = (props, _ref) => {
                 To project your trip costs
                 <br />
                 You always have a choice to
-                <CarChoice setCarChoice={setCarChoice} /> or
+                <CarChoice
+                  setCarChoice={setCarChoice}
+                  setCurrent={setCurrent}
+                />{" "}
+                or
                 <button>Provide details</button> if you know it.
               </div>
             </div>
@@ -79,6 +92,12 @@ const HomePage = (props, _ref) => {
             <div>
               And add the trip <Distance setDistance={setDistance} /> or provide
               poins A and B
+            </div>
+          )}
+          {isSigned && carChoice && distance && (
+            <div>
+              Your trip details:
+              <TripDetails distance={distance} carChoice={carChoice} />
             </div>
           )}
           <br />

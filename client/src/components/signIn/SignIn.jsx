@@ -8,6 +8,7 @@ const SignIn = (props, _ref) => {
   // const [isSigned, setisSigned] = useState(false);
 
   const handleSubmit = (e) => {
+    props.setCurrent(1);
     props.setIsSigned(true);
   };
 
@@ -18,7 +19,7 @@ const SignIn = (props, _ref) => {
   return (
     <>
       <form action="submit" onSubmit={handleSubmit}>
-        <div>Sighn in with a name:</div>
+        <div>Give a name to your trip:</div>
         <input type="text" name="name" onChange={handleChange} value={props.name} />
         <button
           type="sumit"

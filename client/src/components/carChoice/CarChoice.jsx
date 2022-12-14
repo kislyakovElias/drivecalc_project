@@ -17,12 +17,12 @@ function CarChoice(props) {
     // const [selectedCar, setSelectedCar] = useState({})
 
     useEffect(() => {
-      const fetchStudents = async () => {
+      const fetchData = async () => {
         const { data } = await axios.get(`${BACK_END}/api/data`);
         setDataset(data);
       };
 
-      fetchStudents();
+      fetchData();
     }, []);
     console.log(selectedYear);
     // console.log(selectedCar);
@@ -47,18 +47,19 @@ function CarChoice(props) {
       <br />
       {/* EPA FE Label Dataset ID changed to car_id */}
       {dataset
-        .filter((el) =>
-          el.model_year === selectedYear 
-          // && el.mfr_name === selectedMake? selectedMake: ""
-           && el.Carline === selectedModel
+        .filter(
+          (el) =>
+            el.model_year === selectedYear &&
+            // && el.mfr_name === selectedMake? selectedMake: ""
+            el.carline === selectedModel
         )
         .map((el, index) => (
           <li className="App__listItem" key={index}>
-         {/* MPG_calculated: {el.mpg_calculated} <br /> */}
+            {/* MPG_calculated: {el.mpg_calculated} <br /> */}
             {
               <CarCard
                 mfr_name={el.mfr_name}
-                Carline={el.Carline}
+                carline={el.carline}
                 model_year={el.model_year}
                 car_desc={el.car_desc}
                 city_mpg={el.city_mpg}
@@ -67,6 +68,7 @@ function CarChoice(props) {
                 hwy_co2_rounded={el.hwy_co2_rounded}
                 oil_type={el.oil_type}
                 setSelectedCar={props.setCarChoice}
+                setCurrent={props.setCurrent}
               />
             }
           </li>

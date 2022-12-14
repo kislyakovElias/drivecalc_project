@@ -78,7 +78,7 @@ body,
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  padding: 1rem 0;
+  padding: 1rem 1rem;
   &__steps {
     width: 25%;
     padding-right: 5px;;
@@ -92,7 +92,7 @@ body,
 @include main.bp_medium {
 .home {
   flex-direction: column;
-  padding: 1rem 0;
+  // padding: 1rem 1rem;
   &__steps {
     width: 100%;
     height: 100%;

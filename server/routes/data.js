@@ -22,7 +22,7 @@ router.get("/", (_req, res) => {
 
 router.get("/:id", (req, res) => {
 
-  const found = data.find((el70000000000000000000000000000000000000000000000000000000000000000000000000000000000000) => el.id === req.params.id);
+  const found = data.find((el) => el.id === req.params.id);
   if (found) {
     res.status(200).json(found);
   } else {

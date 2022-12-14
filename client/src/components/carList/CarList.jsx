@@ -17,12 +17,12 @@ function CarList() {
     const [selectedCar, setSelectedCar] = useState({})
 
     useEffect(() => {
-      const fetchStudents = async () => {
+      const fetchData = async () => {
         const { data } = await axios.get(`${BACK_END}/api/data`);
         setDataset(data);
       };
 
-      fetchStudents();
+      fetchData();
     }, []);
     console.log(selectedYear);
     console.log(selectedCar);
@@ -47,39 +47,31 @@ function CarList() {
       <br />
       {/* EPA FE Label Dataset ID changed to car_id */}
       {dataset
-        .filter((el) =>
-          el.model_year === selectedYear 
-          // && el.mfr_name === selectedMake? selectedMake: ""
-           && el.Carline === selectedModel
+        .filter(
+          (el) =>
+            el.model_year === selectedYear &&
+            // && el.mfr_name === selectedMake? selectedMake: ""
+            el.carline === selectedModel
         )
         .map((el, index) => (
           <li className="App__listItem" key={index}>
-            {/* <hr />
-          {el.mfr_name} - {el.Carline} <br />
-          <br />
-          {"Mpg"} - {el.city_mpg} + {el.hwy_mpg} / 2 ={" "}
-          {Math.floor(+el.city_mpg + +el.hwy_mpg) / 2} <br />
-          <p className="carCard__label">Fuel consumption per 100km: {Math.floor(100*3.785411784/(1.609344*(+el.city_mpg + +el.hwy_mpg) / 2))}</p>
-          <br />
-          {"Co2"} : {el.city_co2_rounded} + {el.hwy_co2_rounded} ={" "}
-          {Math.floor(+el.city_co2_rounded + +el.hwy_co2_rounded) / 2}
-          <br />
-         MPG_calculated: {el.mpg_calculated} <br />
-          CO2: {el.comb_co2} <br />
-          Oil type : {el.oil_type}
-          <br /> */}
             {
               <CarCard
-                mfr_name={el.mfr_name}
-                Carline={el.Carline}
                 model_year={el.model_year}
-                car_desc={el.car_desc}
+                mfr_name={el.mfr_name}
+                carline={el.carline}
+                class={el.class}
+                car_type={el.car_type}
+                mpg_combined_nominal={el.mpg_combined_nominal}
+                mpg_combined={el.mpg_combined}
+                co2_rounded={el.co2_rounded}
+                oil_type={el.oil_type}
+                setSelectedCar={setSelectedCar}
+
                 city_mpg={el.city_mpg}
                 hwy_mpg={el.hwy_mpg}
                 city_co2_rounded={el.city_co2_rounded}
                 hwy_co2_rounded={el.hwy_co2_rounded}
-                oil_type={el.oil_type}
-                setSelectedCar={setSelectedCar}
               />
             }
           </li>

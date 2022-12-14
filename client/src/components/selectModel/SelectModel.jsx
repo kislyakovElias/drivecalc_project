@@ -13,7 +13,7 @@ function SelectModel(props){
     .filter((el) => el.model_year === props.selectedYear && el.mfr_name === props.selectedMake)
     .map((el, index) => ({
       key: index,
-      value: el.Carline
+      value: el.carline
     }));
 
 return (
