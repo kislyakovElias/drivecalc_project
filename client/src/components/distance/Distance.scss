@@ -1,2 +1,17 @@
 
+.distance{
+    &__label{
+    font-size: 0.85rem;
+    font-weight: 300;
+    padding: 0.25rem 0;
+}
+&__input{
+    width: 12rem;
+        margin: 0.35rem 0;
+        
+    }
+    &__button{
+        margin-right: 0.35rem;
 
+    }
+}

@@ -29,7 +29,7 @@ function CarChoice(props) {
 
   return (
     <div className="carChoice">
-      <h3>Find your car below:</h3>
+      <h3 className="carChoice__header">Find your car below:</h3>
       <div>
         <SelectYear setSelectedYear={setSelectedYear} />
         <SelectMake
@@ -63,6 +63,8 @@ function CarChoice(props) {
                 carline={el.carline}
                 class={el.class}
                 car_type={el.car_type}
+                num_cylinders={el.num_cylinders}
+                engine_volume={el.engine_volume}
                 mpg_combined_nominal={el.mpg_combined_nominal}
                 mpg_combined={el.mpg_combined}
                 co2_rounded={el.co2_rounded}

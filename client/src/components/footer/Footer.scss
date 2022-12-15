@@ -4,15 +4,46 @@
 
 .footer {
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
   flex-grow: 1;
+  padding: 5.5rem 2rem;
   &__text {
+    padding: 0.75rem;
     margin: 0rem;
     font-size: 0.6875rem;
-    padding: 2.5rem 0rem;
     color: $Graphite;
   }
+  &-socials {
+    display: flex;
+    flex-direction: row;
+    padding-left: 18px;
+    &__unit {
+      margin-right: 10px;
+    }
+  }
+}
+
+.insta {
+  height: 4.2rem;
+  width: 4.2rem;
+  transform: scale(0.3, 0.3);
+  background: url("../../assets/images/icon-instagram.png") no-repeat;
+}
+
+.facebook {
+  height: 4.2rem;
+  width: 4.2rem;
+  transform: scale(0.3, 0.3);
+  background: url("../../assets/images/icon-facebook.png") no-repeat;
+}
+
+.twitter {
+  height: 4.2rem;
+  width: 5rem;
+  transform: scale(0.3, 0.3);
+  background: url("../../assets/images/icon-twitter.png") no-repeat;
 }
 
 @include medium {

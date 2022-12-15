@@ -1,34 +1,96 @@
-@use "./main.scss";
-@use "./styles/partials/colors" as *;
+@use "../../main.scss";
 
 
-.home {
+
+.trip{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   padding: 1rem 1rem;
-  &__steps {
+  &__cont {
+        display: flex;
+    justify-content: center;
     width: 25%;
     padding-right: 5px;;
   }
   &__right {
+      display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
     padding-left: 1rem;
     width: 65%;
+    &__car{
+      &__choice{
+        &__header{
+          font-size: 1.5rem;
+          font-weight: 300;
+    padding: 0.25rem 0;
+  }
+  &__info{
+    font-size: 1.1rem;
+  }
+}
+&__compo{
+  padding: 1.5rem 0;
+
+}
+    }
   }
 }
 
 @include main.bp_medium {
-.home {
+.trip {
   flex-direction: column;
   // padding: 1rem 1rem;
-  &__steps {
+  &__cont {
+    align-items: center;
     width: 100%;
+    // max-width: 57.5rem;
     height: 100%;
     padding-right: 0px;;
+    &__steps{
+      align-items: center;
+      display: flex;
+      justify-content: center;
+
+    }
   }
   &__right {
     padding-left: 0rem;
     width: 100%;
+    // align-items: flex-start;
+    padding: 1rem 0;
+        &__car{
+          padding: 1.5rem 0;
+          display: flex;
+          flex-direction: row;
+      &__choice{
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-right: 2rem;
+  &__header{
+    font-size: 1.5rem;
+    font-weight: 300;
+    padding: 0.25rem 0;
+  }
+  &__info{
+    font-size: 1.1rem;
+  }
+      }
+&__compo{
+  width: 100%;
+  padding: 0.25rem;
+  
+}
+&_details{
+  padding: 1rem 0;
+  
+}
+    }
   }
 }
 }
