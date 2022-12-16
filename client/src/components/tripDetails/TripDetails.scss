@@ -1,0 +1,25 @@
+.details{
+    margin: 0.25rem 0;
+    border: solid 1px lightgray;
+    border-radius: 5px;
+    width: 100%;
+    padding: 0 2rem;
+    padding-bottom: 1rem;
+    &__label{
+        font-size: 1.1rem;
+    }
+    &__carname{
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+    &__trip{
+        &__tank{
+            width: 4rem;
+            margin-left: 0.5rem;
+        }
+        &__gas{
+            width: 5rem;
+            margin-left: 0.5rem;
+        }
+    }
+}

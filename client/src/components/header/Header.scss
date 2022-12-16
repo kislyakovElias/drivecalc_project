@@ -1,14 +1,14 @@
 @use "../../main.scss";
 
 .header {
-  background-color: main.$c_Nice-Green;
-  height: 12.5rem;
+  background-color: #95B8D1;
+  height: 7.5rem;
   &__con1 {
-    padding-top: 1.9375rem;
+    padding-top: 1.5rem;
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   &__logo {
@@ -40,12 +40,15 @@
     width: 10.25rem;
     padding-bottom: 0.3125rem;
     border-radius: 1.25rem;
+    color: #FFFFFF;
+    text-decoration: none;
     &:hover {
-      text-decoration: underline;
+
+      background-color: #809BCE;
     }
   }
   &__link {
-    color: main.$c_Cloud;
+    color: rgb(233, 226, 226);
     @include main.m_fontsize_lineh_weight(0.875rem, 2.25rem, 600);
     &:hover {
       color: white;
@@ -55,7 +58,7 @@
     }
   }
   .header__link.active {
-    background-color: main.$c_Black;
+    background-color: #809BCE;
     border-radius: 1.25rem;
     color: white;
     width: 10.25rem;
@@ -74,13 +77,13 @@
 
 @include main.bp_medium {
   .header {
-    height: 11.625rem;
+    height: 3.625rem;
     display: inline-flex;
     justify-content: space-around;
     width: 100%;
     align-items: center;
     padding-top: 0;
-    padding-bottom: 3.75rem;
+    // padding-bottom: 3.75rem;
 
     &__img-con {
       // background-image: url("../../assets/Logo/InStock-Logo_1x.png");
@@ -95,15 +98,16 @@
     &__con1 {
       display: flex;
       justify-content: flex-start;
+      align-items: center;
       @include main.m_padmar-0;
       padding-left: 2rem;
-      padding-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
     }
     &__con2 {
       display: flex;
       justify-content: flex-end;
       padding-left: 0;
-      padding-bottom: 1.5rem;
+      padding-top: 0.2rem;
       padding-right: 2rem;
     }
     &__link-content {

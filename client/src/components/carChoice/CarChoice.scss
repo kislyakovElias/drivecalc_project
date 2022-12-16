@@ -1,0 +1,14 @@
+.carChoice{
+    padding: 0rem;
+    &__header{
+        margin-top: 0;
+          padding-top: 0.25rem;
+    }
+
+    &__listItem{
+
+        text-decoration: none;
+        list-style-type: none;
+        margin-bottom: 1rem;
+    }
+}
