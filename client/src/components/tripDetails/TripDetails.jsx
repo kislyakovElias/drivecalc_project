@@ -1,5 +1,4 @@
 import "./TripDetails.scss";
-import Mapp from "../mapCard/Mapp";
 import {Input} from "antd";
 
 

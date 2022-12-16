@@ -6,7 +6,6 @@ import CarChoice from "../carChoice/CarChoice";
 import CarChoiceDetails from "../carChoiceDetails/CarChoiceDetails";
 import { Steps, Button } from "antd";
 import Distance from "../distance/Distance";
-import TripDetails from "../tripDetails/TripDetails";
 import TripSuggestions from "../tripSuggestions/TripSuggestions";
 
 const TripSteps = (props, _ref) => {
@@ -15,9 +14,7 @@ const TripSteps = (props, _ref) => {
   const [carChoice, setCarChoice] = useState();
   const [distance, setDistance] = useState();
   const [current, setCurrent] = useState(0);
-  const [tank, setTank] = useState(0);
-  // const [gas_price, setGas_price] = useState(1.5);
-  
+  const [tank, setTank] = useState(0);  
 
   console.log(carChoice);
 
@@ -70,7 +67,7 @@ const TripSteps = (props, _ref) => {
                 <div className="trip__right__car__choice__info">
                   To project your trip costs
                   <br />
-                  You always have a choice to
+                  You always have a choice of 19999 cars
                 </div>
               </div>
               <div className="trip__right__car__compo">
@@ -105,7 +102,6 @@ const TripSteps = (props, _ref) => {
             </div>
           )}
           {isSigned && carChoice && (
-            //  && !distance
             <div className="trip__right__car_details">
               {/* And add the trip{" "} */}
               <Distance
@@ -115,27 +111,11 @@ const TripSteps = (props, _ref) => {
                 distance={distance}
                 setDistance={setDistance}
                 mpg={carChoice.mpg}
-                // gas_price={gas_price}
-                // setGas_price={setGas_price}
                 carChoice={carChoice}
                 name={name}
               />
             </div>
           )}
-          {/* {isSigned && carChoice && distance && (
-            <div>
-              <TripDetails
-                name={name}
-                distance={distance}
-                carChoice={carChoice}
-                tank={tank}
-                setTank={setTank}
-                gas_price={gas_price}
-                setGas_price={setGas_price}
-                setDistance={setDistance}
-              />
-            </div>
-          )} */}
         </div>
       </section>
     </>

@@ -28,7 +28,6 @@ import {
   ComboboxList,
   ComboboxOption,
 } from "@reach/combobox";
-// import { formatRelative } from "date-fns";
 
 import "@reach/combobox/styles.css";
 import mapStyles from "./mapStyles";
@@ -51,7 +50,7 @@ const center = {
   lng: -123.11,
 };
 
-export default function Mapp(props) {
+export default function MapCard(props) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -89,11 +88,9 @@ export default function Mapp(props) {
   }, [to]);
 
   const [markers, setMarkers] = useState([]);
-  const [markerA, setMarkerA] = useState([]);
-  const [markerB, setMarkerB] = useState([]);
   const [selected, setSelected] = useState(null);
   const [directions, setDirections] = useState();
-  const [distance, setDistance] = useState(props.distance? props.distance: 0);
+  const [distance, setDistance] = useState(props.distance ? props.distance : 0);
 
   function distanceUpd() {
     if (directions) {
@@ -103,27 +100,11 @@ export default function Mapp(props) {
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     distanceUpd();
-  },[directions])
+  }, [directions]);
 
   const onMapClick = useCallback((e) => {
-    // if (from) {
-    //   setTo((current) => [
-    //     current,
-    //     { lat: e.latLng.lat(), lng: e.latLng.lng(), time: new Date() },
-    //   ]);
-    // } else {
-    //   setFrom((current) => [
-    //     current,
-    //     {
-    //       lat: e.latLng.lat(),
-    //       lng: e.latLng.lng(),
-    //       time: new Date(),
-    //     },
-    //   ]);
-    // }
-
     setMarkers((current) => [
       ...current,
       {
@@ -154,7 +135,7 @@ export default function Mapp(props) {
         (result, status) => {
           if (status === "OK" && result) {
             setDirections(result);
-            console.log(result, 'Directionsset');
+            console.log(result, "Directionsset");
           }
         }
       );
@@ -171,29 +152,26 @@ export default function Mapp(props) {
 
   return (
     <div className="mapbox">
-      {directions && 
-      <TripDetails
-                name={props.name}
-                distance={distance}
-                carChoice={props.carChoice}
-                tank={props.tank}
-                setTank={props.setTank}
-                gas_price={props.gas_price}
-                setGas_price={props.setGas_price}
-
-                leg={directions.routes[0].legs[0]} /> 
-            }
+      {directions && (
+        <TripDetails
+          name={props.name}
+          distance={distance}
+          carChoice={props.carChoice}
+          tank={props.tank}
+          setTank={props.setTank}
+          gas_price={props.gas_price}
+          setGas_price={props.setGas_price}
+          leg={directions.routes[0].legs[0]}
+        />
+      )}
 
       <Locate panTo={panTo} />
       <Search
-        setMarkers={setMarkers}
-        setMarkerA={setMarkerA}
         from={from}
         setFrom={setFrom}
         panTo={panTo}
       />
       <To
-        setMarkerB={setMarkerB}
         from={from}
         to={to}
         setTo={setTo}
@@ -209,7 +187,7 @@ export default function Mapp(props) {
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        {/* {markers.map((marker) => (
+        {markers.map((marker) => (
           <Marker
             key={`${marker.lat}-${marker.lng}`}
             position={{ lat: marker.lat, lng: marker.lng }}
@@ -223,7 +201,7 @@ export default function Mapp(props) {
               scaledSize: new window.google.maps.Size(30, 30),
             }}
           />
-        ))} */}
+        ))}
 
         {directions && (
           <DirectionsRenderer
@@ -255,7 +233,7 @@ export default function Mapp(props) {
             />
             <CircleF
               center={from}
-              radius={props.range ? (props.range - (+props.range / 3)) : 350000}
+              radius={props.range ? props.range - +props.range / 3 : 350000}
               options={rangeOptions}
             />
             <CircleF
@@ -281,7 +259,7 @@ export default function Mapp(props) {
                 scaledSize: new window.google.maps.Size(30, 30),
               }}
             />
-            {/* <MarkerClustererF>
+            <MarkerClustererF>
               {(clusterer) =>
                 points.map((point) => (
                   <Marker
@@ -297,7 +275,7 @@ export default function Mapp(props) {
                   />
                 ))
               }
-            </MarkerClustererF> */}
+            </MarkerClustererF>
           </>
         )}
 
@@ -345,7 +323,7 @@ function Locate({ panTo }) {
   );
 }
 
-function Search({ setMarkers, setMarkerA, from, setFrom, panTo }) {
+function Search({  from, setFrom, panTo }) {
   const {
     ready,
     value,
@@ -358,8 +336,6 @@ function Search({ setMarkers, setMarkerA, from, setFrom, panTo }) {
       radius: 100 * 1000,
     },
   });
-
-  // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
 
   const handleInput = (e) => {
     setValue(e.target.value);
@@ -375,14 +351,6 @@ function Search({ setMarkers, setMarkerA, from, setFrom, panTo }) {
       console.log(getLatLng(results[0]), "latLong");
       const { lat, lng } = await getLatLng(results[0]);
       setFrom({ lat, lng });
-      setMarkerA((current) => [
-        current,
-        {
-          lat: lat,
-          lng: lng,
-          time: new Date(),
-        },
-      ]);
       panTo({ lat, lng });
     } catch (error) {
       console.log("😱 Error: ", error);
@@ -413,7 +381,7 @@ function Search({ setMarkers, setMarkerA, from, setFrom, panTo }) {
     </div>
   );
 }
-function To({ setMarkerB, to, setTo, panTo, fetchDirections, distanceUpd }) {
+function To({ to, setTo, panTo, fetchDirections, distanceUpd }) {
   const {
     ready,
     value,
@@ -427,7 +395,6 @@ function To({ setMarkerB, to, setTo, panTo, fetchDirections, distanceUpd }) {
     },
   });
 
-  // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
 
   const handleInput = (e) => {
     setValue(e.target.value);
@@ -443,15 +410,6 @@ function To({ setMarkerB, to, setTo, panTo, fetchDirections, distanceUpd }) {
       console.log(results[0]);
       const { lat, lng } = await getLatLng(results[0]);
       setTo({ lat, lng });
-      setMarkerB((current) => [
-        ...current,
-        {
-          lat: lat,
-          lng: lng,
-          time: new Date(),
-        },
-      ]);
-      // fetchDirections(to)
       panTo({ lat, lng });
       distanceUpd();
     } catch (error) {

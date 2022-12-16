@@ -1,21 +1,14 @@
-import axios from "axios";
+
 import React, { useEffect, useState } from "react";
 
-import logoReact from "../assets/images/react-seeklogo.com.svg"
-
 import { Button } from "antd";
-import TripDetails from "../components/tripDetails/TripDetails";
 import TripSteps from "../components/tripSteps/TripSteps";
 
-const HomePage = (props, _ref) => {
-  const [name, setName] = useState("");
-  const [isSigned, setIsSigned] = useState(false);
-  const [start, setStart] = useState(false);
-  const [carChoice, setCarChoice] = useState();
-  const [distance, setDistance] = useState();
-  const [current, setCurrent] = useState(0);
+const HomePage = (_ref) => {
 
-  console.log(carChoice);
+  const [start, setStart] = useState(false);
+  const [distance, setDistance] = useState();
+
 
   useEffect(() => {
     console.log(distance);
@@ -27,13 +20,7 @@ const HomePage = (props, _ref) => {
 
   return (
     <>
-      {isSigned && carChoice && distance && (
-        <div>
-          Your trip details:
-          <TripDetails distance={distance} carChoice={carChoice} />
-        </div>
-      )}
-      {start && <TripSteps setIsSigned={setIsSigned} />}
+      {start && <TripSteps />}
       {!start && (
         <div>
           <section className="home__top">
@@ -58,32 +45,24 @@ const HomePage = (props, _ref) => {
           </section>
           <section className="home__info_section">
             <div className="home__info_section__post">
-              <div className="home__info_section__post__left">-- Ilya --</div>
+              <div className="home__info_section__post__left">
+                Add a new task in ToDo list to make sure you got it,
+                before your travel!
+              </div>
               <div className="home__info_section__post__right">
-                Frontend: React,
-                <div className="logo1"></div> JavaScript, CSS with SASS,
-                AntDesign
+                Simply check your gas milage
               </div>
             </div>
             <div className="home__info_section__post">
               <div className="home__info_section__post__left">
-                BackEnd: NodeJS, ExpressJs
-              </div>
-              <div className="home__info_section__post__right">Tech Stack</div>
-            </div>
-
-            {/* Do it !!!! */}
-
-            <div className="home__info_section__post">
-              <div className="home__info_section__post__left">
-                <img src="../assets/images/frank-luca-vA9OaBKQn3Q-unsplash.jpg" alt="" />
+                Point A to point B
               </div>
               <div className="home__info_section__post__right">
-                Give a name to your trip, and save info to json file. check gas
-                price?
+                Trips are always nice, but it is a good idea to track the
+                distance and project your future costs befor the departure.
               </div>
-            </div>
-          </section>
+           </div>
+         </section>
         </div>
       )}
     </>
