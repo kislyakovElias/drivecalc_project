@@ -1,11 +1,10 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+
+
+import {Button, Input} from "antd";
+import "./SignIn.scss"
 
 const SignIn = (props, _ref) => {
-  const nav = useNavigate();
-  // const [name, setName] = useState("");
-  // const [isSigned, setisSigned] = useState(false);
+
 
   const handleSubmit = (e) => {
     props.setCurrent(1);
@@ -18,15 +17,16 @@ const SignIn = (props, _ref) => {
 
   return (
     <>
-      <form action="submit" onSubmit={handleSubmit}>
+      <form className="submit" action="submit" onSubmit={handleSubmit}>
         <div>Give a name to your trip:</div>
-        <input type="text" name="name" onChange={handleChange} value={props.name} />
-        <button
-          type="sumit"
-          // onClick={handleSubmit}
-        >
-          Start
-        </button>
+        <Input
+          className="submit__input"
+          type="text"
+          name="name"
+          onChange={handleChange}
+          value={props.name}
+        />
+        <button className="submit__button" type="submit">Add</button>
       </form>
     </>
   );

@@ -28,8 +28,8 @@ function CarChoice(props) {
     // console.log(selectedCar);
 
   return (
-    <div className="App">
-      <h3>Find your car below:</h3>
+    <div className="carChoice">
+      <h3 className="carChoice__header">Find your car below:</h3>
       <div>
         <SelectYear setSelectedYear={setSelectedYear} />
         <SelectMake
@@ -47,25 +47,28 @@ function CarChoice(props) {
       <br />
       {/* EPA FE Label Dataset ID changed to car_id */}
       {dataset
-        .filter(
-          (el) =>
-            el.model_year === selectedYear &&
-            // && el.mfr_name === selectedMake? selectedMake: ""
-            el.carline === selectedModel
+        .filter((el) =>
+          el.model_year === selectedYear &&
+          el.mfr_name === selectedMake &&
+          el.carline === selectedModel
+            ? selectedModel
+            : ""
         )
         .map((el, index) => (
           <li className="App__listItem" key={index}>
             {/* MPG_calculated: {el.mpg_calculated} <br /> */}
             {
               <CarCard
+                model_year={el.model_year}
                 mfr_name={el.mfr_name}
                 carline={el.carline}
-                model_year={el.model_year}
-                car_desc={el.car_desc}
-                city_mpg={el.city_mpg}
-                hwy_mpg={el.hwy_mpg}
-                city_co2_rounded={el.city_co2_rounded}
-                hwy_co2_rounded={el.hwy_co2_rounded}
+                class={el.class}
+                car_type={el.car_type}
+                num_cylinders={el.num_cylinders}
+                engine_volume={el.engine_volume}
+                mpg_combined_nominal={el.mpg_combined_nominal}
+                mpg_combined={el.mpg_combined}
+                co2_rounded={el.co2_rounded}
                 oil_type={el.oil_type}
                 setSelectedCar={props.setCarChoice}
                 setCurrent={props.setCurrent}

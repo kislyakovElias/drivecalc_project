@@ -1,21 +1,35 @@
 @use "../../main.scss";
 
-.carCard {
-  border: solid 1px lightgray;
-  border-radius: 5px;
-  width: 13.5rem;
-  padding: 0 2rem;
+.carDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-top: solid 1px lightgray;
+  border-bottom: solid 1px lightgray;
+  // border-radius: 5px;
+  width: 100%;
+  padding: 0.5 1rem;
+  &__header{
+    margin: 0.5rem 0;
+  }
   &__label {
     font-size: 1.1rem;
+    margin-left: 0.33rem;
+    padding: 0.25rem 0;
   }
   &__carname {
     font-size: 1.1rem;
     font-weight: 700;
   }
+      &__carinfo{
+        font-size: 0.95rem;
+        font-weight: 600;
+    }
 }
 
 @include main.bp_medium {
-  .carCard {
-    width: 45rem;
+  .carDetails {
+    min-width: 23.4375rem;
+    max-width: 100%;
   }
 }

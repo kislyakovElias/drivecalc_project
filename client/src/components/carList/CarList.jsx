@@ -47,11 +47,12 @@ function CarList() {
       <br />
       {/* EPA FE Label Dataset ID changed to car_id */}
       {dataset
-        .filter(
-          (el) =>
-            el.model_year === selectedYear &&
-            // && el.mfr_name === selectedMake? selectedMake: ""
-            el.carline === selectedModel
+        .filter((el) =>
+          el.model_year === selectedYear &&
+          el.mfr_name === selectedMake &&
+          el.carline === selectedModel
+            ? selectedModel
+            : ""
         )
         .map((el, index) => (
           <li className="App__listItem" key={index}>
@@ -67,11 +68,8 @@ function CarList() {
                 co2_rounded={el.co2_rounded}
                 oil_type={el.oil_type}
                 setSelectedCar={setSelectedCar}
-
-                city_mpg={el.city_mpg}
-                hwy_mpg={el.hwy_mpg}
-                city_co2_rounded={el.city_co2_rounded}
-                hwy_co2_rounded={el.hwy_co2_rounded}
+                engine_volume={el.engine_volume}
+                num_cylinders={el.num_cylinders}
               />
             }
           </li>

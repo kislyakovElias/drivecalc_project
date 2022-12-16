@@ -4,19 +4,37 @@
 .carCard{
     border: solid 1px lightgray;
     border-radius: 5px;
-    width: 15rem;
-    padding: 0 2rem;
+    width: 100%;
+    padding: 0.5rem 0.5rem;
+    color: rgb(31, 30, 29);
+    &__header{
+        border-bottom: solid 1px lightgray;
+    }
+    &__grouplab{
+        display: flex;
+        flex-direction: row;
+        // padding-left: 5px;
+    }
     &__label{
-        font-size: 1.1rem;
+        font-size: 0.8rem;
+        margin: 0.2rem;
     }
     &__carname{
-        font-size: 1.1rem;
-        font-weight: 700;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    &__carinfo{
+        font-size: 0.95rem;
+        font-weight: 600;
+    }
+    &__carbutton{
+        margin-bottom: 0.33rem;
     }
 }
 
 @include main.bp_medium {
 .carCard{
-    width: 45rem;
+    // width: 45rem;
+    padding: 0.5rem 1rem;
 }
 }

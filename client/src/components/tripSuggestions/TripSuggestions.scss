@@ -1,0 +1,36 @@
+@use "../../main.scss";
+
+.suggDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  // border-top: solid 1px lightgray;
+  // border-bottom: solid 1px lightgray;
+  // border-radius: 5px;
+  width: 100%;
+  padding: 0.5 1rem;
+  &__header {
+    margin: 0.5rem 0;
+  }
+  &__label {
+    font-size: 1.1rem;
+    margin-left: 0.33rem;
+    padding: 0.25rem 0;
+  }
+  &__suggname {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  &__sugginfo {
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+}
+
+@include main.bp_medium {
+  .suggDetails {
+    min-width: 23.4375rem;
+    max-width: 100%;
+    margin-right: 1rem;
+  }
+}
