@@ -10,8 +10,7 @@ let range = ((props.tank / (235.214583 / props.mpg)) * 100).toFixed(1);
       <h4 className="suggDetails__header">Trip suggestions:</h4>
       {props.mpg <= 18 && (
         <div className="suggDetails__label">
-          Your car is considered heavy on gas, please be mindful on gass tations
-          along your trip.
+          Your car is considered heavy on gas, please be mindful, and look for gas stations along your trip.
         </div>
       )}
 

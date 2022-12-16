@@ -17,6 +17,7 @@ const TripSteps = (props, _ref) => {
   const [current, setCurrent] = useState(0);
   const [tank, setTank] = useState(0);
   const [gas_price, setGas_price] = useState(1.5);
+  
 
   console.log(carChoice);
 
@@ -27,7 +28,7 @@ const TripSteps = (props, _ref) => {
   return (
     <>
       <section className="trip">
-        {!distance && (
+        {!tank && (
           <div className="trip__cont">
             <Steps
               className="trip__cont__steps"
@@ -40,7 +41,7 @@ const TripSteps = (props, _ref) => {
                 },
                 {
                   title: "Car",
-                  description: "Choose your car.",
+                  description: "Chooice.",
                 },
                 {
                   title: "Destination",
@@ -83,7 +84,7 @@ const TripSteps = (props, _ref) => {
           )}
           {isSigned && carChoice && (
             <div className="trip__right__car">
-              {isSigned && carChoice && distance && (
+              {tank > 0 && (
                 <div className="trip__right__car_details">
                   <TripSuggestions
                     tank={tank}
@@ -103,18 +104,25 @@ const TripSteps = (props, _ref) => {
               </div>
             </div>
           )}
-          {isSigned && carChoice && !distance && (
-            <div>
-              And add the trip{" "}
+          {isSigned && carChoice && (
+            //  && !distance
+            <div className="trip__right__car_details">
+              {/* And add the trip{" "} */}
               <Distance
+               className="trip__right__car_details-map"
                 setTank={setTank}
                 tank={tank}
+                distance={distance}
                 setDistance={setDistance}
-              />{" "}
-              or provide poins A and B
+                mpg={carChoice.mpg}
+                gas_price={gas_price}
+                setGas_price={setGas_price}
+                carChoice={carChoice}
+                name={name}
+              />
             </div>
           )}
-          {isSigned && carChoice && distance && (
+          {/* {isSigned && carChoice && distance && (
             <div>
               <TripDetails
                 name={name}
@@ -124,9 +132,10 @@ const TripSteps = (props, _ref) => {
                 setTank={setTank}
                 gas_price={gas_price}
                 setGas_price={setGas_price}
+                setDistance={setDistance}
               />
             </div>
-          )}
+          )} */}
         </div>
       </section>
     </>

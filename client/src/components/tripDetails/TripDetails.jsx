@@ -5,10 +5,12 @@ import {Input} from "antd";
 
 function TripDetails(props) {
 
-  let litre_100km = (235.214583 / props.carChoice.mpg).toFixed(1)
-  let litresNeeded =
-    ((props.distance / 100) * (235.214583 / props.carChoice.mpg)).toFixed(1);
-  let total_cost = (litresNeeded * props.gas_price).toFixed(1);
+  let litre_100km = (235.214583 / (props.carChoice? props.carChoice.mpg : 10)).toFixed(1)
+  let litresNeeded = (
+    (props.distance / 100) *
+    (235.214583 / (props.carChoice ? props.carChoice.mpg : 10))
+  ).toFixed(1);
+  let total_cost = (litresNeeded * props.gas_price? props.gas_price: 1.5).toFixed(1);
   let range = (props.tank/litre_100km) * 100000;
 
   return (
@@ -21,7 +23,7 @@ function TripDetails(props) {
           className="details__trip__tank"
           type="number"
           value={props.tank}
-          onChange={(e)=>props.setTank(e.target.value)}
+          onChange={(e) => props.setTank(e.target.value)}
         />
         <br />
         <label htmlFor="">Gas price:</label>
@@ -29,7 +31,7 @@ function TripDetails(props) {
           className="details__trip__gas"
           type="number"
           value={props.gas_price}
-          onChange={(e)=>props.setGas_price(e.target.value)}
+          onChange={(e) => props.setGas_price(e.target.value)}
         />
       </div>
       <div className="details__trip">
@@ -58,7 +60,7 @@ function TripDetails(props) {
       <div>
         regular fuel cost today is:{" "}
         <span className="carCard__carinfo">
-          {props?.gas_price ? props.gas_price : "n/a"}
+          {props?.gas_price ? props.gas_price : 1.5}
         </span>{" "}
       </div>
       <hr />
@@ -68,9 +70,7 @@ function TripDetails(props) {
           {total_cost ? total_cost : "n/a"}
         </span>{" "}
       </div>
-      <div>
-        <Mapp range={range} />
-      </div>
+      
     </div>
   );
 }

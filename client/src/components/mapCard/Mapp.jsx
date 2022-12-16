@@ -1,4 +1,11 @@
-import React from "react";
+/* global google */
+import React, {
+  useMemo,
+  useState,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
 import {
   GoogleMap,
   useLoadScript,
@@ -7,7 +14,8 @@ import {
   DirectionsRenderer,
   Circle,
   MarkerClusterer,
-  CircleF
+  CircleF,
+  MarkerClustererF,
 } from "@react-google-maps/api";
 import usePlacesAutocomplete, {
   getGeocode,
@@ -24,12 +32,14 @@ import {
 
 import "@reach/combobox/styles.css";
 import mapStyles from "./mapStyles";
-import point from "../../assets/icons/position-map-pointer-svgrepo-com.svg"
+import point from "../../assets/icons/position-map-pointer-svgrepo-com.svg";
+
+import TripDetails from "../tripDetails/TripDetails";
 
 const libraries = ["places"];
 const mapContainerStyle = {
   height: "75vh",
-  width: "90vw",
+  width: "100%",
 };
 const options = {
   styles: mapStyles,
@@ -41,12 +51,12 @@ const center = {
   lng: -123.11,
 };
 
-export default function Mapp({range}) {
+export default function Mapp(props) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
-  const [from, setFrom] = React.useState(
+  const [from, setFrom] = useState(
     navigator.geolocation.getCurrentPosition(
       (position) => {
         panTo({
@@ -71,22 +81,40 @@ export default function Mapp({range}) {
         }
   );
 
-  const [to, setTo] = React
-    .useState({});
+  const [to, setTo] = useState({});
 
-  const [markers, setMarkers] = React.useState([]);
-  const [markerA, setMarkerA] = React.useState([]);
-  const [markerB, setMarkerB] = React.useState([]);
-  const [selected, setSelected] = React.useState(null);
+  useEffect(() => {
+    fetchDirections();
+    distanceUpd();
+  }, [to]);
 
-  const onMapClick = React.useCallback((e) => {
-    if (markerA) {
-      setMarkerB((current) => [
+  const [markers, setMarkers] = useState([]);
+  const [markerA, setMarkerA] = useState([]);
+  const [markerB, setMarkerB] = useState([]);
+  const [selected, setSelected] = useState(null);
+  const [directions, setDirections] = useState();
+  const [distance, setDistance] = useState(props.distance? props.distance: 0);
+
+  function distanceUpd() {
+    if (directions) {
+      let leg = directions.routes[0].legs[0];
+      let newDistance = leg ? leg.distance.value / 1000 : 1;
+      setDistance(newDistance);
+    }
+  }
+
+  useEffect(()=>{
+    distanceUpd();
+  },[directions])
+
+  const onMapClick = useCallback((e) => {
+    if (from) {
+      setTo((current) => [
         current,
         { lat: e.latLng.lat(), lng: e.latLng.lng(), time: new Date() },
       ]);
     } else {
-      setMarkerA((current) => [
+      setFrom((current) => [
         current,
         {
           lat: e.latLng.lat(),
@@ -106,10 +134,32 @@ export default function Mapp({range}) {
     ]);
   }, []);
 
-  const mapRef = React.useRef();
-  const onMapLoad = React.useCallback((map) => {
+  const mapRef = useRef();
+  const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
+
+  const points = useMemo(() => generatePoints(from), [from]);
+
+  const fetchDirections = (point) => {
+    if (!from) return;
+    if (window.google) {
+      const service = new window.google.maps.DirectionsService();
+      service.route(
+        {
+          origin: from,
+          destination: to,
+          travelMode: window.google.maps.TravelMode.DRIVING,
+        },
+        (result, status) => {
+          if (status === "OK" && result) {
+            setDirections(result);
+            console.log(result, 'Directionsset');
+          }
+        }
+      );
+    }
+  };
 
   const panTo = React.useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
@@ -120,8 +170,19 @@ export default function Mapp({range}) {
   if (!isLoaded) return "Loading...";
 
   return (
-    <div>
-      <h1>Your route </h1>
+    <div className="mapbox">
+      {directions && 
+      <TripDetails
+                name={props.name}
+                distance={distance}
+                carChoice={props.carChoice}
+                tank={props.tank}
+                setTank={props.setTank}
+                gas_price={props.gas_price}
+                setGas_price={props.setGas_price}
+
+                leg={directions.routes[0].legs[0]} /> 
+            }
 
       <Locate panTo={panTo} />
       <Search
@@ -164,39 +225,80 @@ export default function Mapp({range}) {
           />
         ))} */}
 
+        {directions && (
+          <DirectionsRenderer
+            directions={directions}
+            options={{
+              polylineOptions: {
+                zIndex: 10,
+                strokeColor: "#1976D2",
+                strokeWeight: 5,
+              },
+            }}
+          />
+        )}
+
         {from && (
           <>
-          <Marker
-            key={`${from.lat}-${from.lng}`}
-            position={{ lat: from.lat, lng: from.lng }}
-            onClick={() => {
-              setSelected(from);
-            }}
-            icon={{
-            url: {point},
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(15, 15),
-              scaledSize: new window.google.maps.Size(30, 30),
-            }}
-          />
-          <CircleF center={from} radius={range? range-5000: 400000} options={rangeOptions}/>
-          <CircleF center={from} radius={range? range: 450000} options={dangerOptions}/>
-        </>)}
+            <Marker
+              key={`${from.lat}-${from.lng}`}
+              position={{ lat: from.lat, lng: from.lng }}
+              onClick={() => {
+                setSelected(from);
+              }}
+              icon={{
+                url: { point },
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(15, 15),
+                scaledSize: new window.google.maps.Size(30, 30),
+              }}
+            />
+            <CircleF
+              center={from}
+              radius={props.range ? (props.range - (+props.range / 3)) : 350000}
+              options={rangeOptions}
+            />
+            <CircleF
+              center={from}
+              radius={props.range ? props.range : 400000}
+              options={dangerOptions}
+            />
+          </>
+        )}
 
         {to && (
-          <Marker
-            key={`${to.lat}-${to.lng}`}
-            position={{ lat: to.lat, lng: to.lng }}
-            onClick={() => {
-              setSelected(to);
-            }}
-            icon={{
-              url: { point },
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(15, 15),
-              scaledSize: new window.google.maps.Size(30, 30),
-            }}
-          />
+          <>
+            <Marker
+              key={`${to.lat}-${to.lng}`}
+              position={{ lat: to.lat, lng: to.lng }}
+              onClick={() => {
+                setSelected(to);
+              }}
+              icon={{
+                url: { point },
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(15, 15),
+                scaledSize: new window.google.maps.Size(30, 30),
+              }}
+            />
+            {/* <MarkerClustererF>
+              {(clusterer) =>
+                points.map((point) => (
+                  <Marker
+                    key={point.lat}
+                    position={point}
+                    clusterer={clusterer}
+                    icon={{
+                      url: point,
+                      origin: new window.google.maps.Point(0, 0),
+                      anchor: new window.google.maps.Point(15, 15),
+                      scaledSize: new window.google.maps.Size(30, 30),
+                    }}
+                  />
+                ))
+              }
+            </MarkerClustererF> */}
+          </>
         )}
 
         {selected ? (
@@ -300,7 +402,10 @@ function Search({ setMarkers, setMarkerA, from, setFrom, panTo }) {
           <ComboboxList>
             {status === "OK" &&
               data.map(({ id, description }) => (
-                <ComboboxOption key={id} value={description} />
+                <ComboboxOption
+                  key={Math.random() * 1111}
+                  value={description}
+                />
               ))}
           </ComboboxList>
         </ComboboxPopover>
@@ -308,7 +413,7 @@ function Search({ setMarkers, setMarkerA, from, setFrom, panTo }) {
     </div>
   );
 }
-function To({ setMarkerB, to, setTo, panTo }) {
+function To({ setMarkerB, to, setTo, panTo, fetchDirections, distanceUpd }) {
   const {
     ready,
     value,
@@ -346,7 +451,9 @@ function To({ setMarkerB, to, setTo, panTo }) {
           time: new Date(),
         },
       ]);
+      // fetchDirections(to)
       panTo({ lat, lng });
+      distanceUpd();
     } catch (error) {
       console.log("😱 Error: ", error);
     }
@@ -381,7 +488,7 @@ const defaultOptions = {
   draggable4: false,
   editable: false,
   visible: true,
-}
+};
 
 const rangeOptions = {
   ...defaultOptions,
@@ -399,9 +506,9 @@ const dangerOptions = {
   fillColor: "#FBC02D",
 };
 
-const generateHouses = (position) => {
+const generatePoints = (position) => {
   const _points = [];
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 30; i++) {
     const direction = Math.random() < 0.5 ? -2 : 2;
     _points.push({
       lat: position.lat + Math.random() / direction,

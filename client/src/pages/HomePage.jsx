@@ -74,10 +74,13 @@ const HomePage = (props, _ref) => {
                 BackEnd: NodeJS, ExpressJs
               </div>
             <div className="home__info_section__post__right">
-               -> Ilya
+               -- Ilya --
             </div>
             </div>
-            <div className="home__info_section__post">
+
+{/* Do it !!!! */}
+
+            {/* <div className="home__info_section__post">
               <div className="home__info_section__post__left">
                 checkilst todo to display at tripInfo page
               </div>
@@ -85,7 +88,7 @@ const HomePage = (props, _ref) => {
                 Give a name to your trip, and save info to json file. check gas
                 price?
             </div>
-            </div>
+            </div> */}
           </section>
         </div>
       )}

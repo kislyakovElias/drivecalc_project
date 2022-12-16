@@ -5,7 +5,7 @@ import Mapp from "../components/mapCard/Mapp";
 const YourTrip = (props, _ref) => {
   return (
     <>
-      <div>Trip page</div>
+      {/* <div>Trip page</div> */}
       <div className="trip__map">
         <Mapp />
       </div>
