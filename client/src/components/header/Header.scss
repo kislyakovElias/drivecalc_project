@@ -40,8 +40,10 @@
     width: 10.25rem;
     padding-bottom: 0.3125rem;
     border-radius: 1.25rem;
+    color: #FFFFFF;
+    text-decoration: none;
     &:hover {
-      text-decoration: underline;
+
       background-color: rgb(104, 136, 104);
     }
   }

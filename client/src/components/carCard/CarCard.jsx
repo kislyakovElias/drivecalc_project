@@ -20,9 +20,9 @@ function CarCard(props) {
     <div className="carCard">
       {/* <h4 className="carCard__header">Your Car:</h4> */}
       <div className="carCard__header">
-        Car: {props?.model_year}{" "}
+        Car:
         <span className="carCard__carname">
-          {props?.mfr_name} {props?.carline}
+          {" "}{props?.model_year} {props?.mfr_name} {props?.carline}
         </span>
       </div>
       <div className="carCard__grouplab">

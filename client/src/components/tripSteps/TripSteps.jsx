@@ -16,7 +16,7 @@ const TripSteps = (props, _ref) => {
   const [distance, setDistance] = useState();
   const [current, setCurrent] = useState(0);
   const [tank, setTank] = useState(0);
-  const [gas_price, setGas_price] = useState(1.5);
+  // const [gas_price, setGas_price] = useState(1.5);
   
 
   console.log(carChoice);
@@ -115,8 +115,8 @@ const TripSteps = (props, _ref) => {
                 distance={distance}
                 setDistance={setDistance}
                 mpg={carChoice.mpg}
-                gas_price={gas_price}
-                setGas_price={setGas_price}
+                // gas_price={gas_price}
+                // setGas_price={setGas_price}
                 carChoice={carChoice}
                 name={name}
               />

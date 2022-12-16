@@ -47,11 +47,12 @@ function CarChoice(props) {
       <br />
       {/* EPA FE Label Dataset ID changed to car_id */}
       {dataset
-        .filter(
-          (el) =>
-            el.model_year === selectedYear &&
-            // && el.mfr_name === selectedMake? selectedMake: ""
-            el.carline === selectedModel
+        .filter((el) =>
+          el.model_year === selectedYear &&
+          el.mfr_name === selectedMake &&
+          el.carline === selectedModel
+            ? selectedModel
+            : ""
         )
         .map((el, index) => (
           <li className="App__listItem" key={index}>

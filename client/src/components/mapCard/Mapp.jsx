@@ -108,21 +108,21 @@ export default function Mapp(props) {
   },[directions])
 
   const onMapClick = useCallback((e) => {
-    if (from) {
-      setTo((current) => [
-        current,
-        { lat: e.latLng.lat(), lng: e.latLng.lng(), time: new Date() },
-      ]);
-    } else {
-      setFrom((current) => [
-        current,
-        {
-          lat: e.latLng.lat(),
-          lng: e.latLng.lng(),
-          time: new Date(),
-        },
-      ]);
-    }
+    // if (from) {
+    //   setTo((current) => [
+    //     current,
+    //     { lat: e.latLng.lat(), lng: e.latLng.lng(), time: new Date() },
+    //   ]);
+    // } else {
+    //   setFrom((current) => [
+    //     current,
+    //     {
+    //       lat: e.latLng.lat(),
+    //       lng: e.latLng.lng(),
+    //       time: new Date(),
+    //     },
+    //   ]);
+    // }
 
     setMarkers((current) => [
       ...current,

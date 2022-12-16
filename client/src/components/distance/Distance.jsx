@@ -8,32 +8,33 @@ import TripDetails from "../tripDetails/TripDetails";
 
 function Distance(props) {
   const [val, setVal] = useState();
-   const [checked, setChecked] = useState(false);
-   const [inputType, setInputType] = useState(false);
-   let range = ((props.tank / (235.214583 / props.mpg)) * 100000).toFixed(1);
+  const [checked, setChecked] = useState(false);
+  const [inputType, setInputType] = useState(false);
+  const [gas_price, setGas_price] = useState(1.5);
+  let range = ((props.tank / (235.214583 / props.mpg)) * 100000).toFixed(1);
   let distance = props?.leg?.distance.value / 1000;
-   
-   const onChange = (checked) => {
-     console.log(`switch to ${checked}`);
-     setInputType(!inputType)
-   };
-  
+
+  const onChange = (checked) => {
+    console.log(`switch to ${checked}`);
+    setInputType(!inputType);
+  };
+
   const double = (e) => {
     setChecked(e.target.checked);
   };
-  
+
   const onSubmit = () => {
-    if(checked){
-      props.setDistance(val*2)
+    if (checked) {
+      props.setDistance(val * 2);
       setInputType(!inputType);
-    }else {
+    } else {
       setInputType(!inputType);
-      props.setDistance(val*1)
-     }
+      props.setDistance(val * 1);
+    }
 
-     //Do something that hide all the unnecessary stuff
+    //Do something that hide all the unnecessary stuff
 
-    console.log(val, 'submitted');
+    console.log(val, "submitted");
   };
 
   return (
@@ -86,9 +87,8 @@ function Distance(props) {
                   carChoice={props.carChoice}
                   tank={props.tank}
                   setTank={props.setTank}
-                  gas_price={props.gas_price}
-                  setGas_price={props.setGas_price}
-                  
+                  gas_price={gas_price}
+                  setGas_price={setGas_price}
                 />
               )}
             </div>
@@ -114,8 +114,8 @@ function Distance(props) {
                 carChoice={props.carChoice}
                 tank={props.tank}
                 setTank={props.setTank}
-                gas_price={props.gas_price}
-                setGas_price={props.setGas_price}
+                gas_price={gas_price}
+                setGas_price={Gas_price}
               />
             </div> */}
             <Mapp
@@ -127,8 +127,8 @@ function Distance(props) {
               carChoice={props.carChoice}
               tank={props.tank}
               setTank={props.setTank}
-              gas_price={props.gas_price}
-              setGas_price={props.setGas_price}
+              gas_price={gas_price}
+              setGas_price={setGas_price}
             />
           </div>
         )}

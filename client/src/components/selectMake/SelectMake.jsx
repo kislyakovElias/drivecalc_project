@@ -3,18 +3,27 @@ import { Select } from "antd";
 const onChange = (value) => {
   console.log(`selected ${value}`);
 };
-const onSearch = (value) => {
-  console.log("search:", value);
-};
 function SelectMake(props) {
-
-  let makeList = props.data
-    .filter((el) => el.model_year === props.selectedYear)
+  
+    let listByYear = props.data
+      .filter((el) => el.model_year === props.selectedYear)
+      .map((el) => el.mfr_name);
+  
+    let unic = [...new Set(listByYear)];
+  
+  let makeList = unic
     .map((el, index) => ({
       key: index,
-      value: el.mfr_name,
-      label: el.mfr_name,
+      value: el,
+      label: el,
     }));
+  
+  
+  const onSearch = (value) => {
+    console.log("search:", value);
+    console.log(listByYear);
+    console.log(unic);
+  };
 
 return (
   <Select

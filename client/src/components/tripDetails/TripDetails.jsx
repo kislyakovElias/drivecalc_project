@@ -5,12 +5,12 @@ import {Input} from "antd";
 
 function TripDetails(props) {
 
-  let litre_100km = (235.214583 / (props.carChoice? props.carChoice.mpg : 10)).toFixed(1)
+  let litre_100km = (235.214583 / (props.carChoice? props.carChoice.mpg : 15)).toFixed(1)
   let litresNeeded = (
     (props.distance / 100) *
-    (235.214583 / (props.carChoice ? props.carChoice.mpg : 10))
+    (235.214583 / litre_100km)
   ).toFixed(1);
-  let total_cost = (litresNeeded * props.gas_price? props.gas_price: 1.5).toFixed(1);
+  let total_cost = (litresNeeded * (props.gas_price? props.gas_price: 1.55)).toFixed(1);
   let range = (props.tank/litre_100km) * 100000;
 
   return (
