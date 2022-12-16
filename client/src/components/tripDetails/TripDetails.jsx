@@ -16,7 +16,7 @@ function TripDetails(props) {
   return (
     <div className="details">
       <h4>Trip {props.name} Details</h4>
-
+      {props.carChoice && <>
       <div className="details__trip">
         <label htmlFor="">Tank: </label>
         <Input
@@ -41,7 +41,7 @@ function TripDetails(props) {
           {litre_100km ? litre_100km : "n/a"} l/100km{" "}
         </span>
         .
-      </div>
+      </div></>}
       <div>
         Your trip distance is:{" "}
         <span className="carCard__carinfo">
@@ -60,7 +60,7 @@ function TripDetails(props) {
       <div>
         regular fuel cost today is:{" "}
         <span className="carCard__carinfo">
-          {props?.gas_price ? props.gas_price : 1.5}
+          {props?.gas_price ? props.gas_price : 1.55}
         </span>{" "}
       </div>
       <hr />

@@ -4,6 +4,7 @@ import React, {useState, useEffect} from "react";
 import { Checkbox, Input, Button, Switch } from "antd";
 import Mapp from "../mapCard/Mapp";
 import TripDetails from "../tripDetails/TripDetails";
+import ToDoComponent from "../toDoComponent/ToDoComponent"
 
 
 function Distance(props) {
@@ -11,12 +12,17 @@ function Distance(props) {
   const [checked, setChecked] = useState(false);
   const [inputType, setInputType] = useState(false);
   const [gas_price, setGas_price] = useState(1.5);
+  const [addList, setAddList] = useState(false);
   let range = ((props.tank / (235.214583 / props.mpg)) * 100000).toFixed(1);
   let distance = props?.leg?.distance.value / 1000;
 
   const onChange = (checked) => {
     console.log(`switch to ${checked}`);
     setInputType(!inputType);
+  };
+  const addOne = (checked) => {
+    console.log(`switch to ${checked}`);
+    setAddList(!addList);
   };
 
   const double = (e) => {
@@ -41,7 +47,10 @@ function Distance(props) {
     <>
       <section className="distance">
         +Add manually <Switch defaultChecked onChange={onChange} /> -Provide
-        points on the map
+        points on the map <br />
+        No List Needed  <Switch onChange={addOne} />
+        +Add ToDo List
+        <br />
         <br />
         {inputType && (
           <>
@@ -94,9 +103,11 @@ function Distance(props) {
             </div>
           </>
         )}
+        {addList && <ToDoComponent/>}
+        {/* <ToDoComponent/> */}
         {!inputType && (
           <div>
-            <label className="distance__label" htmlFor="">
+            {/* {!props.tank && <><label className="distance__label" htmlFor="">
               <br />
               Add how many litres you currently have in gas tank
             </label>
@@ -107,6 +118,7 @@ function Distance(props) {
               onChange={(e) => props?.setTank(e.target.value)}
             />
             <br />
+            </>}  */}
             {/* <div>
               <TripDetails
               distance={props.distance}

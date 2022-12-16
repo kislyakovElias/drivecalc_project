@@ -38,7 +38,8 @@ body,
     justify-content: center;
     height: 50%;
     padding: 0 2rem;
-    background-color: rgb(231, 253, 231);
+    color: #3e5070;
+    background-color: #D6EADF;
     &__header {
       display: flex;
       justify-content: center;
@@ -64,7 +65,7 @@ body,
     &__button {
       padding: 0.5rem;
       font-size: 1.5rem;
-      background-color: rgb(151, 226, 170);
+      background-color: #B8E0D2;
       width: 10rem;
       height: 100%;
     }
@@ -103,10 +104,12 @@ body,
         
         &__left {  
           width: 45%;
+          height: 6rem;
           
         }
         &__right {
           width: 45%;
+          height: 6rem;
         }
       }
   }
@@ -115,6 +118,12 @@ body,
   display: flex;
   // margin-left: 1rem;
   width: 95%;
+}
+
+.logo1{
+  width: 2rem;
+  height: 2rem;
+  background-image: url("./assets/images/sass-logo-new.png");
 }
 
 }

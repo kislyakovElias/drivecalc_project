@@ -26,7 +26,7 @@ const SignIn = (props, _ref) => {
           onChange={handleChange}
           value={props.name}
         />
-        <button className="submit__button" type="submit">Start</button>
+        <button className="submit__button" type="submit">Add</button>
       </form>
     </>
   );

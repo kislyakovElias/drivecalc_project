@@ -1,7 +1,7 @@
 @use "../../main.scss";
 
 .header {
-  background-color: main.$c_Nice-Green;
+  background-color: #95B8D1;
   height: 7.5rem;
   &__con1 {
     padding-top: 1.5rem;
@@ -44,11 +44,11 @@
     text-decoration: none;
     &:hover {
 
-      background-color: rgb(104, 136, 104);
+      background-color: #809BCE;
     }
   }
   &__link {
-    color: main.$c_Cloud;
+    color: rgb(233, 226, 226);
     @include main.m_fontsize_lineh_weight(0.875rem, 2.25rem, 600);
     &:hover {
       color: white;
@@ -58,7 +58,7 @@
     }
   }
   .header__link.active {
-    background-color: main.$c_Black;
+    background-color: #809BCE;
     border-radius: 1.25rem;
     color: white;
     width: 10.25rem;

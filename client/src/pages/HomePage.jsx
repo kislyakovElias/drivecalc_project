@@ -1,13 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
+import logoReact from "../assets/images/react-seeklogo.com.svg"
+
 import { Button } from "antd";
-import { Routes, Route, useLocation } from "react-router-dom";
-import SignIn from "../components/signIn/SignIn";
-import CarChoice from "../components/carChoice/CarChoice";
-import CarChoiceDetails from "../components/carChoiceDetails/CarChoiceDetails";
-import { Steps } from "antd";
-import Distance from "../components/distance/Distance";
 import TripDetails from "../components/tripDetails/TripDetails";
 import TripSteps from "../components/tripSteps/TripSteps";
 
@@ -62,33 +58,31 @@ const HomePage = (props, _ref) => {
           </section>
           <section className="home__info_section">
             <div className="home__info_section__post">
-              <div className="home__info_section__post__left">
-                Tech Stack
+              <div className="home__info_section__post__left">-- Ilya --</div>
+              <div className="home__info_section__post__right">
+                Frontend: React,
+                <div className="logo1"></div> JavaScript, CSS with SASS,
+                AntDesign
               </div>
-            <div className="home__info_section__post__right">
-                Frontend: React, JavaScript, CSS with SASS, AntDesign
-            </div>
             </div>
             <div className="home__info_section__post">
               <div className="home__info_section__post__left">
                 BackEnd: NodeJS, ExpressJs
               </div>
-            <div className="home__info_section__post__right">
-               -- Ilya --
-            </div>
+              <div className="home__info_section__post__right">Tech Stack</div>
             </div>
 
-{/* Do it !!!! */}
+            {/* Do it !!!! */}
 
-            {/* <div className="home__info_section__post">
+            <div className="home__info_section__post">
               <div className="home__info_section__post__left">
-                checkilst todo to display at tripInfo page
+                <img src="../assets/images/frank-luca-vA9OaBKQn3Q-unsplash.jpg" alt="" />
               </div>
-            <div className="home__info_section__post__right">
+              <div className="home__info_section__post__right">
                 Give a name to your trip, and save info to json file. check gas
                 price?
+              </div>
             </div>
-            </div> */}
           </section>
         </div>
       )}
