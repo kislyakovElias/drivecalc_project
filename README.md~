@@ -1,1 +1,46 @@
-# drivecalc_project
+
+# DriveCalc project
+
+This app is created to help you plan your next trip, calculate your fuel costs, and help you not to forget anything before you leave.
+
+
+Video presentation is Accesible here: https://www.loom.com/share/a8832678e4c8488688a1041d9fa7ca92
+
+
+
+## Tech stack
+
+ - [JavaScript](https://www.javascript.com/)
+ - [React](https://reactjs.org)
+ - [NodeJS](https://nodejs.org/en/)
+ - [ExpressJS](https://expressjs.com/)
+ - [AntDesign](https://ant.design/)
+
+
+
+## To run
+
+To run this project you will reqire ".env" files for front end and for the back end in the "client" and "server" folders respectively containing:
+
+client folder:
+
+"
+REACT_APP_BACKEND_URL=your_port
+REACT_APP_GOOGLE_MAPS_API_KEY="YoUR_KEY"
+
+"
+
+sever folder .env :
+
+"
+PORT=your_port
+
+"
+
+Ports are reqired to be the same.
+
+To Run the project, use following command from the root folder:
+```bash
+  npm run dev
+```
+
