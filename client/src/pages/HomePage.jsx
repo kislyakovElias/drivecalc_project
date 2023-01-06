@@ -1,14 +1,11 @@
-
 import React, { useEffect, useState } from "react";
 
 import { Button } from "antd";
 import TripSteps from "../components/tripSteps/TripSteps";
 
 const HomePage = (_ref) => {
-
   const [start, setStart] = useState(false);
   const [distance, setDistance] = useState();
-
 
   useEffect(() => {
     console.log(distance);
@@ -46,10 +43,11 @@ const HomePage = (_ref) => {
           <section className="home__info_section">
             <div className="home__info_section__post">
               <div className="home__info_section__post__left">
-                Add a new task in ToDo list to make sure you got it,
-                before your travel!
+                Add a new task in ToDo list to make sure you got it, before your
+                travel!
               </div>
               <div className="home__info_section__post__right">
+                
                 Simply check your gas milage
               </div>
             </div>
@@ -61,8 +59,8 @@ const HomePage = (_ref) => {
                 Trips are always nice, but it is a good idea to track the
                 distance and project your future costs befor the departure.
               </div>
-           </div>
-         </section>
+            </div>
+          </section>
         </div>
       )}
     </>

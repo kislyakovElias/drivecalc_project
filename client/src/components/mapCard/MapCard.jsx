@@ -318,7 +318,8 @@ function Locate({ panTo }) {
         );
       }}
     >
-      <img src="/compass.svg" alt="locate yourself" />
+      {/* <img src="/compass.svg" alt="locate yourself" /> */}
+      Locate yourself
     </button>
   );
 }
